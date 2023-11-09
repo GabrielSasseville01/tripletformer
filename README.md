@@ -15,7 +15,7 @@ numpy                     1.19.3
 
 # Training and Evaluation
 
-We provide an example for one dataset ``physionet``. All the datasets can be run in the similar manner using the hyperparameters provided.
+We provide an example for one dataset ``physionet``. All the datasets can be run in the similar manner using the hyperparameters provided. Start by looking in the utils.py code. Find the location where the dataset is loaded with a ctrl+f search of 'physion'. Modify the paths to correspond to your path. Next, make sure you can run on GPU. Next, look in the train_tripletformer.py file and locate where the path at which the model is being saved by doing ctrl+f 'saved_models', modify this path to the right one.
 
 ```
 python train_tripletformer.py --niters 2000 --dataset physionet --norm --shuffle --sample-tp 0.1 --mse-weight 1.0 --imab-dim 64 --cab-dim 256 --decoder-dim 128 --nlayers 1 --sample-type random --num-ref-points 128
