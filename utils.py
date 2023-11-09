@@ -88,7 +88,7 @@ def evaluate_model(
 
 def get_dataset(batch_size, dataset, test_batch_size=5, filter_anomalies=True):
     if dataset == 'physionet':
-        x = np.load("~/Desktop/codes_github/tripletformer/data_lib/physionet.npz")
+        x = np.load("/content/tripletformer/data_lib/physionet.npz")
     elif dataset == 'mimiciii':
         x = np.load("~/Desktop/codes_github/tripletformer/data_lib/mimiciii.npz")
     elif dataset == 'PenDigits':
