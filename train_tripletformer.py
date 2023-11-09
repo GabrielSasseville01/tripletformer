@@ -117,13 +117,13 @@ if __name__ == '__main__':
                                 'state_dict': net.state_dict(),
                                 'optimizer_state_dict': optimizer.state_dict(),
                                 'loss': train_loss / train_n,
-                            }, 'saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
+                            }, '/content/gdrive/MyDrive/Maitrise/Code/saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
                 early_stop = 0
             else:
                 early_stop += 1
             if early_stop == 30:
                 print("Early stopping because of no improvement in val. metric for 30 epochs")
-                chp = torch.load('saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
+                chp = torch.load('/content/gdrive/MyDrive/Maitrise/Code/saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
                 net.load_state_dict(chp['state_dict'])
                 test_loss = utils.test_result(net,dim,test_loader,args.sample_type, args.sample_tp,shuffle=False,k_iwae=1)
                 print('best_val_loss: ', best_val_loss.cpu().detach().numpy(), ' test_loss: ', test_loss.cpu().detach().numpy())
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             scheduler.step(val_loss)
     if itr == args.niters:
         print("Trained completed")
-        chp = torch.load('saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
+        chp = torch.load('/content/gdrive/MyDrive/Maitrise/Code/saved_models/'+args.dataset + '_' + str(experiment_id) + '.h5')
         net.load_state_dict(chp['state_dict'])
         test_loss = utils.test_result(net,dim,test_loader,args.sample_type, args.sample_tp,shuffle=False,k_iwae=1)
         print('best_val_loss: ', best_val_loss.cpu().detach().numpy(), ' test_loss: ', test_loss.cpu().detach().numpy())
